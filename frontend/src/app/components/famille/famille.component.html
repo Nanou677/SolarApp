@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Gestion des familles</h1>
+
+    <div class="card">
+        <h2>Ajouter une famille</h2>
+
+        <input [(ngModel)]="form.nom" placeholder="Nom de la famille *" />
+        <input [(ngModel)]="form.adresse" placeholder="Adresse" />
+        <input [(ngModel)]="form.telephone" placeholder="Telephone" />
+
+        <button (click)="ajouter()">Ajouter</button>
+
+        <p class="msg" *ngIf="message">{{ message }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Liste des familles</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Telephone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let f of familles">
+                    <td>{{ f.nom }}</td>
+                    <td>{{ f.adresse }}</td>
+                    <td>{{ f.telephone }}</td>
+                    <td>
+                        <button class="btn-voir" (click)="aller(f.id)">Voir appareils</button>
+                        <button class="btn-sup" (click)="supprimer(f.id)">Supprimer</button>
+                    </td>
+                </tr>
+
+                <tr *ngIf="familles.length === 0">
+                    <td colspan="4">Aucune famille trouvée.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
